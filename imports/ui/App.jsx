@@ -62,6 +62,8 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
+    Meteor.subscribe('ledgers');
+
     return {
         ledgers: Ledgers.find({}, { sort: { createdAt: -1 } }).fetch(),
         currentUser: Meteor.user(),
