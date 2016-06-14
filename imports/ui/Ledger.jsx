@@ -1,9 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import { Ledgers } from '../api/ledgers.js';
 
 // Component for a single Ledger
 export default class Ledger extends Component {
+    deleteThisLedger() {
+        Meteor.call('ledgers.remove', this.props.ledger._id);
+    }
+
     render() {
         return (
             <li>

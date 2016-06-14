@@ -18,12 +18,7 @@ class App extends Component {
         // Find the correct text field via react ref
         const title = ReactDOM.findDOMNode(this.refs.newLedgerTextInput).value.trim();
 
-        Ledgers.insert({
-            title,
-            createdAt: new Date(),
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-        });
+        Meteor.call('ledgers.insert', title);
 
         // Clear the form
         ReactDOM.findDOMNode(this.refs.newLedgerTextInput).value = '';
@@ -47,7 +42,7 @@ class App extends Component {
                         <form className="new-ledger" onSubmit={this.handleSubmit.bind(this)} >
                             <input
                                 type="text"
-                                ref="textInput"
+                                ref="newLedgerTextInput"
                                 placeholder="Type to add new ledgers"
                             />
                         </form> : ''
