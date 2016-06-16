@@ -9,8 +9,8 @@ import { Ledgers } from '../api/ledgers.js';
 import Ledger from './Ledger.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
-// App component, represents the whole app
-class App extends Component {
+// LedgerListing component, represents the listing of ledgers
+class LedgerListing extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
@@ -57,7 +57,7 @@ class App extends Component {
     }
 }
 
-App.propTypes = {
+LedgerListing.propTypes = {
     ledgers: PropTypes.array.isRequired,
 };
 
@@ -68,4 +68,4 @@ export default createContainer(() => {
         ledgers: Ledgers.find({}, { sort: { createdAt: -1 } }).fetch(),
         currentUser: Meteor.user(),
     };
-}, App);
+}, LedgerListing);
