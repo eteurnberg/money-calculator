@@ -6,5 +6,4 @@ import '../imports/startup/accounts-config.js';
 import MainLayout from '../imports/layouts/MainLayout.jsx';
 
 Meteor.startup(() => {
-    render(<MainLayout />, document.getElementById('render-target'));
 });
