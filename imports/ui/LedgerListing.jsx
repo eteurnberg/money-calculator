@@ -33,25 +33,48 @@ class LedgerListing extends Component {
     render() {
         return (
             <div className="container">
-                <header>
-                    <h1>Ledgers</h1>
+                <div className="page-header">
+                    <h1>Your Ledgers</h1>
+                </div>
 
-                    <AccountsUIWrapper />
+                <AccountsUIWrapper />
 
-                    { this.props.currentUser ?
-                        <form className="new-ledger" onSubmit={this.handleSubmit.bind(this)} >
-                            <input
-                                type="text"
-                                ref="newLedgerTextInput"
-                                placeholder="Type to add new ledgers"
-                            />
-                        </form> : ''
-                    }
-                </header>
+                { this.props.currentUser ?
+                    <div className="panel panel-default">
+                        <div className="panel-heading">
+                            <h3 className="panel-title">Create a new ledger</h3>
+                        </div>
+                        <div className="panel-body">
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    onSubmit={this.handleSubmit.bind(this)}
+                                    ref="newLedgerTextInput"
+                                    placeholder="Title"
+                                />
+                                <span className="input-group-btn">
+                                    <button className="btn btn-default"
+                                        type="button"
+                                        onClick={this.handleSubmit.bind(this)}
+                                    >Create</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div> : ''
+                }
 
-                <ul>
-                    {this.renderLedgers()}
-                </ul>
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        <h3 className="panel-title">Your saved ledgers</h3>
+                    </div>
+
+                    <div className="panel-body">
+                        <div className="list-group">
+                            {this.renderLedgers()}
+                        </div>
+                    </div>
+                </div>        
             </div>
         );
     }

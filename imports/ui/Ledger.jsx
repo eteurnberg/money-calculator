@@ -11,14 +11,17 @@ export default class Ledger extends Component {
 
     render() {
         return (
-            <li>
-                <button className="delete" onClick={this.deleteThisLedger.bind(this)}>
-                    &times;
-                </button>
+            <a href="#" className="list-group-item">
                 <span className="ledgerText">
-                    <strong>{this.props.ledger.username}</strong>: {this.props.ledger.title}
+                    {this.props.ledger.title}
                 </span>
-            </li>
+
+                <button type="button" className="delete close pull-right" aria-label="Close" onClick={this.deleteThisLedger.bind(this)}>
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </a>
         );
     }
 }
