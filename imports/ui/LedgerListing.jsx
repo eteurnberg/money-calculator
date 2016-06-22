@@ -6,7 +6,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Ledgers } from '../api/ledgers.js';
 
-import Ledger from './Ledger.jsx';
+import LedgerListItem from './LedgerListItem.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 // LedgerListing component, represents the listing of ledgers
@@ -26,7 +26,7 @@ class LedgerListing extends Component {
 
     renderLedgers() {
         return this.props.ledgers.map((ledger) => (
-            <Ledger key={ledger._id} ledger={ledger} />
+            <LedgerListItem key={ledger._id} ledger={ledger} />
         ));
     }
 
