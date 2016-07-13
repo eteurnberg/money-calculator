@@ -60,4 +60,27 @@ Meteor.methods({
 
         Ledgers.update(ledgerId, { $set: { private: setToPrivate } });
     },
+    'ledgers.addPerson'(ledgerId, personName, personEmail) {
+        check(ledgerId, String);
+        check(personName, String);
+        check(personEmail, String);
+
+        const ledger = Ledgers.findOne(ledgerId);
+
+        if (ledger.owner !== Meteor.userId()) {
+            // If the current user isn't the owner of the ledger they cannot edit
+            throw new Meteor.Error('not-authorised');
+        }
+
+        let ledgerPeople = ledger.people;
+        if (ledgerPeople == null) {
+            ledgerPeople = { personName: personEmail };
+        } else if (ledgerPeople.personName !== null) {
+            throw new Meteor.Error('non-unique-person-name');
+        } else {
+            ledgerPeople.personName = personEmail;
+        }
+
+        Ledgers.update(ledgerId, { $set: { people: ledgerPeople } });
+    },
 });

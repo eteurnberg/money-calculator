@@ -8,10 +8,11 @@ export default class Ledger extends Component {
     deleteThisLedger() {
         Meteor.call('ledgers.remove', this.props.ledger._id);
     }
-
+    
     render() {
+        var linkText = "/ledger/" + this.props.ledger._id;
         return (
-            <a href="#" className="list-group-item">
+            <a href={linkText} className="list-group-item">
                 <span className="ledgerText">
                     {this.props.ledger.title}
                 </span>
